@@ -420,3 +420,4 @@ f_figure <- function(df = df, date_start = date_start) {
     
   }, envir = df)
 }
+
