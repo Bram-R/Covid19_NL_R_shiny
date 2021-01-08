@@ -1,5 +1,5 @@
 f_data <- function() {
-  
+
   ###### RETRIEVE AND COMBINE INPUT DATA ######
   # RIVM
   dat_RIVM <- fread("https://data.rivm.nl/covid-19/COVID-19_aantallen_gemeente_cumulatief.csv") 
@@ -277,6 +277,6 @@ f_data_man <- function(dat = dat, date_start = as.Date("2020-6-1")) {
   df <- list(COV = COV, COV_Rt = COV_Rt, COV_test = COV_test, 
              Hosp = Hosp, Hosp_LCPS = Hosp_LCPS, IC = IC, IC_LCPS = IC_LCPS,
              Nurs = Nurs, Death = Death, Int = Int, Population = Population, pred = pred)
-  
+
   return(df = df)
 }

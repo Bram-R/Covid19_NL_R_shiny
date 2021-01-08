@@ -13,12 +13,13 @@ source("f_figure.R") # function to make Figures based on NL Covid-19 data
 date_start <- as.Date("2020-6-1") #as.Date("2020-3-15") #minimal 2 days after RIVM data starts 
 lbls <- format(seq(date_start, Sys.Date() + 30, by = "4 week"), "%e %b")
 
-# obtain and manipulate data
-dat <- f_data() # obtain data
-df <- f_data_man(dat = dat, date_start = date_start) # manipulate data
+# obtain data
+dat <- f_data(date_start)
+df <- dat$df # constructed data.frames
+dat <- dat$dat # original data
 
 # make figures (stored in Figures folder)
-f_figure(df = df, date_start = date_start)
+f_figure(df)
 
 ###### SAVE R ENVIRONMENT ######
 save.image(file = "Figures/COVID19.RData") 
