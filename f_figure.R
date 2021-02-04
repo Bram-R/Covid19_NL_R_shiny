@@ -24,10 +24,10 @@ f_figure <- function(df = df, date_start = date_start) {
     lines(COV_test$I_pos_7d / 7 ~ COV_test$date, type = "l", lty = 3, lwd = 2)
     factor <- 1 / 7 / (100000 / Population$NLD) 
     polygon(c(date_start - 30, Sys.Date() + 30, Sys.Date() + 30, 
-              date_start - 30), c(50 * factor, 50 * factor, 150 * factor, 150 * factor), 
+              date_start - 30), c(35 * factor, 35 * factor, 100 * factor, 100 * factor), 
             col = adjustcolor("yellow2", alpha.f = 0.3), border = NA)
     polygon(c(date_start - 30, Sys.Date() + 30, Sys.Date() + 30, 
-              date_start - 30), c(150 * factor, 150 * factor, 250 * factor, 250 * factor), 
+              date_start - 30), c(100 * factor, 100 * factor, 250 * factor, 250 * factor), 
             col = adjustcolor("orange", alpha.f = 0.3), border = NA)
     polygon(c(date_start - 30, Sys.Date() + 30, Sys.Date() + 30, 
               date_start - 30), c(250 * factor, 250 * factor, 100000 * factor, 100000 * factor), 
@@ -62,10 +62,10 @@ f_figure <- function(df = df, date_start = date_start) {
     points(COV$I_rel_limb ~ COV$date, cex = 0.6, pch = 1)
     lines(COV_test$I_pos_7d_rel / 7 ~ COV_test$date, type = "l", lty = 3, lwd = 2)
     polygon(c(date_start - 30, Sys.Date() + 30, Sys.Date() + 30, 
-              date_start - 30), c(50 / 7, 50 / 7, 150 / 7, 150 / 7), 
+              date_start - 30), c(35 / 7, 35 / 7, 100 / 7, 100 / 7), 
             col = adjustcolor("yellow2", alpha.f = 0.3), border = NA)
     polygon(c(date_start - 30, Sys.Date() + 30, Sys.Date() + 30, 
-              date_start - 30), c(150 / 7, 150 / 7, 250 / 7, 250 / 7), 
+              date_start - 30), c(100 / 7, 100 / 7, 250 / 7, 250 / 7), 
             col = adjustcolor("orange", alpha.f = 0.3), border = NA)
     polygon(c(date_start - 30, Sys.Date() + 30, Sys.Date() + 30, 
               date_start - 30), c(250 / 7, 250 / 7, 100000 / 7, 100000 / 7), 
@@ -141,7 +141,7 @@ f_figure <- function(df = df, date_start = date_start) {
          ylim = c(0, max(c(Hosp$I, pred$Hosp_I$up), na.rm = TRUE)), main = "COVID-19 ziekenhuisopnames exclusief IC (NICE)", type = "l", lwd = 2, xaxt = "n")
     points(Hosp$I ~ Hosp$date, cex = 0.6, pch = 16)
     polygon(c(date_start - 30, Sys.Date() + 30, Sys.Date() + 30, 
-              date_start - 30), c(16, 16, 40, 40), 
+              date_start - 30), c(12, 12, 40, 40), 
             col = adjustcolor("yellow2", alpha.f = 0.3), border = NA)
     polygon(c(date_start - 30, Sys.Date() + 30, Sys.Date() + 30, 
               date_start - 30), c(40, 40, 80, 80), 
@@ -176,7 +176,7 @@ f_figure <- function(df = df, date_start = date_start) {
          main = "COVID-19 IC opnames (NICE)", type = "l", lty = 1, xaxt = "n")
     points(IC$I ~ IC$date, cex = 0.6, pch = 16)
     polygon(c(date_start - 30, Sys.Date() + 30, Sys.Date() + 30, 
-              date_start - 30), c(4, 4, 10, 10), 
+              date_start - 30), c(3, 3, 10, 10), 
             col = adjustcolor("yellow2", alpha.f = 0.3), border = NA)
     polygon(c(date_start - 30, Sys.Date() + 30, Sys.Date() + 30, 
               date_start - 30), c(10, 10, 20, 20), 
@@ -346,10 +346,10 @@ f_figure <- function(df = df, date_start = date_start) {
     plot(COV$I_7d_rel ~ COV$date, ylab = "Incidentie / week per 100.000 inwoners", xlab = "Datum", pch = 16, cex = 0.6, xlim = c(date_start, Sys.Date() + 10), 
          ylim = c(0, ceiling(max(Int$I_7d_rel, na.rm = TRUE) / 100) * 100), main = "COVID-19 aantal nieuwe gemelde patienten", type = "l", col = "black", lwd = 4, xaxt = "n")
     polygon(c(date_start - 30, Sys.Date() + 30, Sys.Date() + 30, 
-              date_start - 30), c(50, 50, 150, 150), 
+              date_start - 30), c(35, 35, 100, 100), 
             col = adjustcolor("yellow2", alpha.f = 0.3), border = NA)
     polygon(c(date_start - 30, Sys.Date() + 30, Sys.Date() + 30, 
-              date_start - 30), c(150, 150, 250, 250), 
+              date_start - 30), c(100, 100, 250, 250), 
             col = adjustcolor("orange", alpha.f = 0.3), border = NA)
     polygon(c(date_start - 30, Sys.Date() + 30, Sys.Date() + 30, 
               date_start - 30), c(250, 250, 100000, 100000), 
