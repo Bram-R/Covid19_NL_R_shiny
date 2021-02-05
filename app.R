@@ -35,10 +35,7 @@ save(dat, file = "Data/dat.RDATA") # raw data
 save(df, file = "Data/df.RDATA") # processed data
 
 ##### Running the App #####
-runApp(
-  appDir = shinyApp(ui = ui, server = f_server),
-  launch.browser = TRUE
-)
+shinyApp(ui = ui, server = f_server)
 
 ##### Running the from GitHub #####
-runGitHub("Covid19_NL_R_shiny", "Bram-R")
+# runGitHub("Covid19_NL_R_shiny", "Bram-R")
