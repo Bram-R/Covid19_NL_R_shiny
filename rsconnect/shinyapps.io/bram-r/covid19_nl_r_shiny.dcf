@@ -1,0 +1,10 @@
+name: covid19_nl_r_shiny
+title:
+username:
+account: bram-r
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3591067
+bundleId: 4186689
+url: https://bram-r.shinyapps.io/covid19_nl_r_shiny/
+when: 1612562141.39564

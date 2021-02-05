@@ -38,4 +38,8 @@ save(df, file = "Data/df.RDATA") # processed data
 shinyApp(ui = ui, server = f_server)
 
 ##### Running the from GitHub #####
-# runGitHub("Covid19_NL_R_shiny", "Bram-R")
+# shiny::runGitHub("Covid19_NL_R_shiny", "Bram-R")
+
+##### Deploy app to Shinyapps.io #####
+# library(rsconnect)
+# rsconnect::deployApp(getwd())
