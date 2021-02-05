@@ -5,6 +5,8 @@ f_data <- function() {
   dat_RIVM <- fread("https://data.rivm.nl/covid-19/COVID-19_aantallen_gemeente_cumulatief.csv") 
   dat_RIVM_R <- fromJSON(file = "https://data.rivm.nl/covid-19/COVID-19_reproductiegetal.json", simplify = TRUE)
   dat_RIVM_test <- f_pdf_rivm_test("https://www.rivm.nl/sites/default/files/2021-01/COVID-19_WebSite_rapport_wekelijks_20210105_1254.pdf")
+  dat_RIVM_test_new <- f_pdf_rivm_test("https://www.rivm.nl/sites/default/files/2021-02/COVID-19_WebSite_rapport_wekelijks_20210202_1259_final.pdf")
+  dat_RIVM_test <- rbind(dat_RIVM_test[1:26, ], dat_RIVM_test_new)
   # https://www.rivm.nl/coronavirus-covid-19/actueel/wekelijkse-update-epidemiologische-situatie-covid-19-in-nederland
   # vergelijk dat_RIVM_test met RIVM rapport
   dat_RIVM_nursery <- fread("https://data.rivm.nl/covid-19/COVID-19_verpleeghuizen.csv") 
@@ -244,39 +246,39 @@ f_data_man <- function(dat = dat, date_start = as.Date("2020-6-1")) {
   rm(COV_limb, Death_limb, Nurs_I) # clean workspace
   
   ###### TRENDLIJN ######
-  pred_COV_I <- f_trend(x = COV$I, time = 7, span = 0.25)$pred
-  pred_COV_I_rel <- pred_COV_I
-  pred_COV_I_rel[, -1] <- pred_COV_I_rel[, -1] / Population$NLD * 100000
-  pred_COV_I_limb <- f_trend(x = COV$I_limb, time = 7, span = 0.25)$pred
-  pred_COV_I_rel_limb <- pred_COV_I_limb
-  pred_COV_I_rel_limb[, -1] <- pred_COV_I_rel_limb[, -1] / Population$Limb * 100000
-  
-  pred_Hosp_I <- f_trend(x = Hosp$I, time = 7, span = 0.25)$pred
-  pred_Hosp_B <- f_trend(x = Hosp$B, time = 7, span = 0.25)$pred
-  pred_IC_I <- f_trend(x = IC$I, time = 7, span = 0.25)$pred
-  pred_IC_B <- f_trend(x = IC$B, time = 7, span = 0.25)$pred
-  
-  pred_Hosp_LCPS_B <- f_trend(x = Hosp_LCPS$B, time = 7, span = 0.25)$pred
-  pred_IC_LCPS_B <- f_trend(x = IC_LCPS$B, time = 7, span = 0.25)$pred
-  pred_IC_LCPS_B_non_covid <- f_trend(x = IC_LCPS$B_non_covid, time = 7, span = 0.25)$pred
-  pred_IC_LCPS_B_total <- pred_IC_LCPS_B
-  pred_IC_LCPS_B_total[, -1] <- pred_IC_LCPS_B[, -1] + pred_IC_LCPS_B_non_covid[, -1]
-  pred_Hosp_IC_LCPS_B_total_cov <- pred_IC_LCPS_B
-  pred_Hosp_IC_LCPS_B_total_cov[, -1] <- pred_IC_LCPS_B[, -1] + pred_Hosp_LCPS_B[, -1]
-  
-  # Create prediction data list
-  pred <- list(COV_I = pred_COV_I, COV_I_rel = pred_COV_I_rel, COV_I_limb = pred_COV_I_limb,
-               COV_I_rel_limb = pred_COV_I_rel_limb, Hosp_I = pred_Hosp_I, Hosp_B = pred_Hosp_B,
-               IC_I = pred_IC_I, IC_B = pred_IC_B, Hosp_LCPS_B = pred_Hosp_LCPS_B, 
-               IC_LCPS_B = pred_IC_LCPS_B, IC_LCPS_B_non_covid = pred_IC_LCPS_B_non_covid, 
-               IC_LCPS_B_total = pred_IC_LCPS_B_total, Hosp_IC_LCPS_B_total_cov = pred_Hosp_IC_LCPS_B_total_cov)
-  rm(pred_COV_I, pred_COV_I_rel, pred_COV_I_limb, pred_COV_I_rel_limb, pred_Hosp_I, pred_Hosp_B, pred_IC_I, pred_IC_B,
-     pred_Hosp_LCPS_B, pred_IC_LCPS_B, pred_IC_LCPS_B_non_covid, pred_IC_LCPS_B_total, pred_Hosp_IC_LCPS_B_total_cov) # Clean workspace
-  
+  # pred_COV_I <- f_trend(x = COV$I, time = 7, span = 0.25)$pred
+  # pred_COV_I_rel <- pred_COV_I
+  # pred_COV_I_rel[, -1] <- pred_COV_I_rel[, -1] / Population$NLD * 100000
+  # pred_COV_I_limb <- f_trend(x = COV$I_limb, time = 7, span = 0.25)$pred
+  # pred_COV_I_rel_limb <- pred_COV_I_limb
+  # pred_COV_I_rel_limb[, -1] <- pred_COV_I_rel_limb[, -1] / Population$Limb * 100000
+  # 
+  # pred_Hosp_I <- f_trend(x = Hosp$I, time = 7, span = 0.25)$pred
+  # pred_Hosp_B <- f_trend(x = Hosp$B, time = 7, span = 0.25)$pred
+  # pred_IC_I <- f_trend(x = IC$I, time = 7, span = 0.25)$pred
+  # pred_IC_B <- f_trend(x = IC$B, time = 7, span = 0.25)$pred
+  # 
+  # pred_Hosp_LCPS_B <- f_trend(x = Hosp_LCPS$B, time = 7, span = 0.25)$pred
+  # pred_IC_LCPS_B <- f_trend(x = IC_LCPS$B, time = 7, span = 0.25)$pred
+  # pred_IC_LCPS_B_non_covid <- f_trend(x = IC_LCPS$B_non_covid, time = 7, span = 0.25)$pred
+  # pred_IC_LCPS_B_total <- pred_IC_LCPS_B
+  # pred_IC_LCPS_B_total[, -1] <- pred_IC_LCPS_B[, -1] + pred_IC_LCPS_B_non_covid[, -1]
+  # pred_Hosp_IC_LCPS_B_total_cov <- pred_IC_LCPS_B
+  # pred_Hosp_IC_LCPS_B_total_cov[, -1] <- pred_IC_LCPS_B[, -1] + pred_Hosp_LCPS_B[, -1]
+  # 
+  # # Create prediction data list
+  # pred <- list(COV_I = pred_COV_I, COV_I_rel = pred_COV_I_rel, COV_I_limb = pred_COV_I_limb,
+  #              COV_I_rel_limb = pred_COV_I_rel_limb, Hosp_I = pred_Hosp_I, Hosp_B = pred_Hosp_B,
+  #              IC_I = pred_IC_I, IC_B = pred_IC_B, Hosp_LCPS_B = pred_Hosp_LCPS_B, 
+  #              IC_LCPS_B = pred_IC_LCPS_B, IC_LCPS_B_non_covid = pred_IC_LCPS_B_non_covid, 
+  #              IC_LCPS_B_total = pred_IC_LCPS_B_total, Hosp_IC_LCPS_B_total_cov = pred_Hosp_IC_LCPS_B_total_cov)
+  # rm(pred_COV_I, pred_COV_I_rel, pred_COV_I_limb, pred_COV_I_rel_limb, pred_Hosp_I, pred_Hosp_B, pred_IC_I, pred_IC_B,
+  #    pred_Hosp_LCPS_B, pred_IC_LCPS_B, pred_IC_LCPS_B_non_covid, pred_IC_LCPS_B_total, pred_Hosp_IC_LCPS_B_total_cov) # Clean workspace
+  # 
   # Create output data list
   df <- list(COV = COV, COV_Rt = COV_Rt, COV_test = COV_test, 
              Hosp = Hosp, Hosp_LCPS = Hosp_LCPS, IC = IC, IC_LCPS = IC_LCPS,
-             Nurs = Nurs, Death = Death, Int = Int, Population = Population, pred = pred)
+             Nurs = Nurs, Death = Death, Int = Int, Population = Population) #, pred = pred)
 
   return(df = df)
 }
