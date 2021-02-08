@@ -1,6 +1,18 @@
 # Description: Shiny server function
 
-f_server <- function(input, output){   
+f_server <- function(input, output){
+
+  # generic
+  date_start <- as.Date("2020-06-01","%Y-%m-%d")
+  
+  # obtain and process data
+  dat <- f_data() # obtain data
+  df <- f_data_process(dat = dat, date_start = date_start) # process data
+  
+  #-- SAVE R ENVIRONMENT --#
+  # save(dat, file = "Data/dat.RDATA") # raw data
+  # save(df, file = "Data/df.RDATA") # processed data
+  
   #-- Update plots when event (change in start date) is observed --#
   observeEvent(input$SI_date_start, ignoreNULL = FALSE, {
     output$SO_1_Incidentie_NL <- renderPlot(f_figure(df, date_start = input$SI_date_start, figure = 1))
@@ -16,7 +28,7 @@ f_server <- function(input, output){
     output$SO_11_Sterfte_NL <- renderPlot(f_figure(df, date_start = input$SI_date_start, figure = 11))
     output$SO_12_Incidentie_INT <- renderPlot(f_figure(df, date_start = input$SI_date_start, figure = 12))
     output$SO_13_Perc_test_pos_INT <- renderPlot(f_figure(df, date_start = input$SI_date_start, figure = 13))
-  }) # Observe event end
+  }) # observe event end
   
   #-- Create downloadable files --#
   output$SO_download_raw_data <- downloadHandler(
@@ -26,7 +38,7 @@ f_server <- function(input, output){
     content = function(file) {
       save(dat, file = file) # raw data
     }
-  )
+  ) # close downloadHandler
   
   output$SO_download_processed_data <- downloadHandler(
     filename = function() {
@@ -35,5 +47,5 @@ f_server <- function(input, output){
     content = function(file) {
       save(df, file = file) # processed data
     }
-  )
-} # Server end
+  ) # close downloadHandler
+} # server end

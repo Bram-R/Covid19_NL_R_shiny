@@ -43,10 +43,8 @@ f_data <- function() {
   return(dat = dat)
 }
 
-
-
-f_data_man <- function(dat = dat, date_start = as.Date("2020-6-1")) {  
-  ###### MANIPULATE INPUT DATA ######
+f_data_process <- function(dat = dat, date_start = as.Date("2020-6-1")) {  
+  ###### PROCESS INPUT DATA ######
   # RIVM
   dat$RIVM_R <- data.frame(rbindlist(dat$RIVM_R, fill = TRUE)) 
   dat$RIVM_R$Date <- as.Date(dat$RIVM_R$Date)
