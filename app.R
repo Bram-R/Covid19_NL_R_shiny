@@ -1,6 +1,6 @@
 ###### Setup ######
 rm(list = ls())
-# Sys.setlocale("LC_TIME", "Dutch") # set to Dutch locale (to get Dutch month names) for this session
+Sys.setlocale("LC_TIME", "Dutch") # set to Dutch locale (to get Dutch month names) for this session
 options(scipen = 999)
 
 # load packages

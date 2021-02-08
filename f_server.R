@@ -2,16 +2,17 @@
 
 f_server <- function(input, output){
 
-  # generic
+  # setup
   date_start <- as.Date("2020-06-01","%Y-%m-%d")
   
-  # obtain and process data
   dat <- f_data() # obtain data
   df <- f_data_process(dat = dat, date_start = date_start) # process data
   
-  #-- SAVE R ENVIRONMENT --#
-  # save(dat, file = "Data/dat.RDATA") # raw data
-  # save(df, file = "Data/df.RDATA") # processed data
+  save(dat, file = "Data/dat.RDATA") # raw data
+  save(df, file = "Data/df.RDATA") # processed data
+  
+  load("Data/dat.RDATA")
+  load("Data/df.RDATA")
   
   #-- Update plots when event (change in start date) is observed --#
   observeEvent(input$SI_date_start, ignoreNULL = FALSE, {
