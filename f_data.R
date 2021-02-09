@@ -5,7 +5,7 @@ f_data <- function() {
   dat_RIVM <- fread("https://data.rivm.nl/covid-19/COVID-19_aantallen_gemeente_cumulatief.csv") 
   dat_RIVM_R <- fromJSON(file = "https://data.rivm.nl/covid-19/COVID-19_reproductiegetal.json", simplify = TRUE)
   dat_RIVM_test <- f_pdf_rivm_test("https://www.rivm.nl/sites/default/files/2021-01/COVID-19_WebSite_rapport_wekelijks_20210105_1254.pdf")
-  dat_RIVM_test_new <- f_pdf_rivm_test("https://www.rivm.nl/sites/default/files/2021-02/COVID-19_WebSite_rapport_wekelijks_20210202_1259_final.pdf")
+  dat_RIVM_test_new <- f_pdf_rivm_test("https://www.rivm.nl/sites/default/files/2021-02/COVID-19_WebSite_rapport_wekelijks_20210209_1115_final.pdf")
   dat_RIVM_test <- rbind(dat_RIVM_test[1:26, ], dat_RIVM_test_new)
   # https://www.rivm.nl/coronavirus-covid-19/actueel/wekelijkse-update-epidemiologische-situatie-covid-19-in-nederland
   # vergelijk dat_RIVM_test met RIVM rapport
